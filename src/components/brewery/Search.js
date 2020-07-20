@@ -1,13 +1,14 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import BreweryContext from '../../context/brewery/breweryContext';
 import AlertContext from '../../context/alert/alertContext';
+import useInput from '../hooks/useInput';
 
 const Search = () => {
   const breweryContext = useContext(BreweryContext);
 
   const alertContext = useContext(AlertContext);
 
-  const [text, setText] = useState('');
+  const [text, bindText, resetText] = useInput('');
 
   const inputRef = useRef(null);
 
@@ -21,11 +22,9 @@ const Search = () => {
       alertContext.setAlert('Please enter something', 'danger');
     } else {
       breweryContext.searchBreweries(text);
-      setText('');
+      resetText();
     }
   };
-
-  const onChange = (e) => setText(e.target.value);
 
   return (
     <div>
@@ -34,11 +33,11 @@ const Search = () => {
           <input
             type='text'
             name='text'
+            autoComplete='off'
             className='form-control mx-auto w-50 mb-3'
             placeholder='Search Breweries...'
-            value={text}
             ref={inputRef}
-            onChange={onChange}
+            {...bindText}
           />
         </div>
         <input
