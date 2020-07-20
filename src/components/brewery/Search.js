@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import BreweryContext from '../../context/brewery/breweryContext';
 import AlertContext from '../../context/alert/alertContext';
 
@@ -8,6 +8,12 @@ const Search = () => {
   const alertContext = useContext(AlertContext);
 
   const [text, setText] = useState('');
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +37,7 @@ const Search = () => {
             className='form-control mx-auto w-50 mb-3'
             placeholder='Search Breweries...'
             value={text}
+            ref={inputRef}
             onChange={onChange}
           />
         </div>
