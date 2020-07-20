@@ -1,0 +1,6 @@
+export const SEARCH_BREWERIES = 'SEARCH_BREWERIES';
+export const GET_BREWERY = 'GET_BREWERY';
+export const CLEAR_BREWERIES = 'CLEAR_BREWERIES';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
